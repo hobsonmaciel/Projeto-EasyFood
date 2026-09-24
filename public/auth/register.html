@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8b6f47">
+  <meta name="description" content="Crie sua conta no EasyFood.">
+  <title>Criar Conta — EasyFood</title>
+  <link rel="stylesheet" href="/assets/css/auth.css?v=20260920">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page register-page" data-page="register">
+  <main class="auth-container">
+    <div class="auth-wrapper">
+      <!-- Coluna Esquerda - Branding -->
+      <section class="auth-branding">
+        <div class="brand-section">
+          <h1 class="brand-title">EasyFood</h1>
+          <p class="brand-tagline">Crie sua conta agora.</p>
+        </div>
+
+        <div class="auth-illustration">
+          <div class="illustration-item item-1">◉</div>
+          <div class="illustration-item item-2">✧</div>
+          <div class="illustration-item item-3">★</div>
+        </div>
+
+        <div class="brand-footer">
+          <p>Comece a organizar seus restaurantes favoritos em segundos.</p>
+        </div>
+      </section>
+
+      <!-- Coluna Direita - Formulário -->
+      <section class="auth-form-section">
+        <div class="form-wrapper">
+          <div class="form-header">
+            <h2>Criar conta</h2>
+            <p>Preencha os dados abaixo para começar</p>
+          </div>
+
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+
+          <form id="registerForm" class="auth-form">
+            <div class="form-group">
+              <label for="name">Nome</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name"
+                minlength="2"
+                maxlength="120"
+                placeholder="Seu nome" 
+                autocomplete="name"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                placeholder="seu@email.com" 
+                autocomplete="email"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input 
+                type="password" 
+                id="password" 
+                name="password"
+                minlength="6"
+                placeholder="Mínimo 6 caracteres" 
+                autocomplete="new-password"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirmar Senha</label>
+              <input 
+                type="password" 
+                id="confirmPassword" 
+                name="confirmPassword"
+                minlength="6"
+                placeholder="Digite novamente" 
+                autocomplete="new-password"
+                required
+              >
+            </div>
+
+            <button type="submit" id="submitButton" class="btn-primary btn-large">
+              Criar conta
+              <span class="btn-icon">→</span>
+            </button>
+          </form>
+
+          <div class="form-divider">
+            <span>já tem conta?</span>
+          </div>
+
+          <p class="form-switch">
+            <a href="/auth/login" class="link-accent">Fazer login</a>
+          </p>
+
+          <p class="form-note">
+            Ao criar uma conta, você concorda com nossos termos de serviço.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/assets/js/auth.js?v=20260920" defer></script>
+</body>
+</html>

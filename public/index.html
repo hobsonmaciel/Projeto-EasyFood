@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8b6f47">
+  <meta name="description" content="EasyFood — Organize seus restaurantes favoritos com elegância.">
+  <title>EasyFood — Seu Universo Gastronômico</title>
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260920">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Tela de Carregamento -->
+  <div class="loading-overlay" id="loadingScreen">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <p>Preparando seu catálogo...</p>
+    </div>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <div class="app-wrapper hidden" id="appContent">
+    <!-- Header/Navbar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <a href="/" class="navbar-brand">
+          <span class="brand-icon">◉</span>
+          <span>EasyFood</span>
+        </a>
+
+        <nav class="navbar-links">
+          <a href="#overview">Início</a>
+          <a href="#restaurants">Restaurantes</a>
+          <a href="#add">Adicionar</a>
+        </nav>
+
+        <div class="navbar-actions">
+          <span class="user-name" id="userName">Usuário</span>
+          <button type="button" class="btn-logout" id="logoutButton" title="Sair">↗</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mensagens de Status -->
+    <div id="status" class="status-toast" role="status" aria-live="polite"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="overview">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">Seu Universo Gastronômico</h1>
+          <p class="hero-subtitle">Organize, categorize e descubra seus restaurantes favoritos em um único lugar.</p>
+          
+          <div class="hero-actions">
+            <a href="#add" class="btn-primary">
+              Adicionar Restaurante
+              <span>+</span>
+            </a>
+            <a href="#restaurants" class="btn-secondary">
+              Ver Catálogo
+              <span>→</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number" id="statTotal">0</span>
+              <span class="stat-label">Restaurantes</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-number" id="statCategories">0</span>
+              <span class="stat-label">Categorias</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-number" id="statAverage">—</span>
+              <span class="stat-label">Nota Média</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-plate">
+            <div class="plate-decoration">★</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Adicionar Restaurante -->
+    <section class="add-section" id="add">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>Novo Restaurante</h2>
+          <p>Adicione um novo estabelecimento ao seu catálogo</p>
+        </div>
+
+        <form id="formCadastro" class="restaurant-form">
+          <div class="form-group">
+            <label for="name">Nome do Restaurante</label>
+            <input 
+              type="text" 
+              id="name" 
+              maxlength="120"
+              placeholder="Ex.: Pizzaria Gourmet" 
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="category">Categoria</label>
+            <input 
+              type="text" 
+              id="category" 
+              maxlength="80"
+              placeholder="Ex.: Italiana" 
+              required
+            >
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="description">Descrição</label>
+              <textarea 
+                id="description" 
+                maxlength="300"
+                placeholder="Descreva o restaurante..."
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="address">Endereço</label>
+              <input 
+                type="text" 
+                id="address" 
+                maxlength="200"
+                placeholder="Ex.: Rua das Flores, 123" 
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefone</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                placeholder="(11) 99999-9999" 
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rating">Avaliação</label>
+            <div class="rating-input-wrapper">
+              <input 
+                type="number" 
+                id="rating" 
+                step="0.1"
+                min="0"
+                max="5"
+                placeholder="4.5" 
+                required
+              >
+              <span class="rating-unit">★ / 5</span>
+            </div>
+          </div>
+
+          <button type="submit" id="submitButton" class="btn-primary btn-large">
+            Cadastrar Restaurante
+            <span>→</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Section: Catálogo de Restaurantes -->
+    <section class="restaurants-section" id="restaurants">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>Seu Catálogo</h2>
+          <p>Todos os seus restaurantes em um só lugar</p>
+        </div>
+
+        <div class="restaurants-filter">
+          <label for="filtroCategory" class="filter-label">
+            Filtrar por categoria:
+          </label>
+          <select id="filtroCategory" class="filter-select">
+            <option value="">Todas as categorias</option>
+          </select>
+        </div>
+
+        <div id="listaRestaurantes" class="restaurants-grid">
+          <div class="empty-state">
+            <div class="empty-icon">◎</div>
+            <h3>Nenhum restaurante cadastrado</h3>
+            <p>Comece adicionando seu primeiro restaurante</p>
+            <a href="#add" class="btn-secondary">Adicionar agora</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <span class="brand-icon">◉</span>
+          <span>EasyFood</span>
+        </div>
+        <p class="footer-text">Seu universo gastronômico, organizado.</p>
+        <a href="#overview" class="footer-link">Voltar ao topo ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/assets/js/app.js?v=20260920" defer></script>
+</body>
+</html>
